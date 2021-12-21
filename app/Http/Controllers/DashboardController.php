@@ -25,9 +25,9 @@ class DashboardController extends Controller
         $var_title = "ARSparepart | Scan Objek";
         return view('objek', compact('var_title'), compact('sparepart'));
     }
-    public function video()
+    public function video($id)
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::find($id);
 
         $var_title = "ARSparepart | Scan Video";
         return view('video', compact('var_title'), compact('sparepart'));

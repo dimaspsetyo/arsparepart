@@ -1,18 +1,14 @@
   @include('template.header')
-      <!-- DataTables -->
-      <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-      <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-      <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('../adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 </head>
 <body class="layout-top-nav">
 <div class="wrapper">
 
-  <!-- Preloader -->
   @include('template.preloader')
 
-<!-- Main content -->
 <section class="content">
-  <!-- Main row -->
   <div class="row">
     <div class="col-12">
       <div class="card card-primary">
@@ -33,9 +29,13 @@
               @foreach($sparepart as $sparepart)
             <tr>
               <td class="project-actions text-right">
-                <a class="btn btn-primary btn-sm" href="{{ route('objek', ['id' => $sparepart->id]) }}">
-                  <i class="fas fa-eye">
-                  </i>
+                <a style="font-family: Source Sans Pro" class="btn btn-primary btn-sm" href="{{ route('objek', ['id' => $sparepart->id]) }}">
+                  <i class="fas fa-eye"></i>
+                  3D
+                </a>
+                <a style="font-family: Source Sans Pro"  class="btn btn-info btn-sm" href="{{ route('video', ['id' => $sparepart->id]) }}">
+                  <i class="fas fa-video"></i>
+                  Video
                 </a>
               </td>
               <td>{{ $sparepart->kodeSP }}</td>
@@ -45,26 +45,19 @@
             </tfoot>
           </table>
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row (main row) -->
-</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-<!-- footer -->
+</section>
+</div>
+
 @include('template.footer')
 
-
 </div>
-<!-- ./wrapper -->
 
 @include('template.script')
+
 @include('template.datatables')
 
 </body>

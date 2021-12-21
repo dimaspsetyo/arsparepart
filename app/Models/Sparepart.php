@@ -16,7 +16,8 @@ class Sparepart extends Model
         'kodeSP',
         'namaSP',
         'fileObjek',
+        'fileVideo',
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 }

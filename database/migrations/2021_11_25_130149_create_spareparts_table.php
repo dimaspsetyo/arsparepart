@@ -18,6 +18,7 @@ class CreateSparepartsTable extends Migration
             $table->string('kodeSP', 15);
             $table->string('namaSP', 15);
             $table->string('fileObjek', 255);
+            $table->string('fileVideo', 255);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

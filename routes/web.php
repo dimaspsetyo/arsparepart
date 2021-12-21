@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 Route::get('/objek/{id}', [App\Http\Controllers\DashboardController::class, 'objek'])->name('objek');
-Route::get('/video', [App\Http\Controllers\DashboardController::class, 'video'])->name('video');
+Route::get('/video/{id}', [App\Http\Controllers\DashboardController::class, 'video'])->name('video');
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/postLogin', [App\Http\Controllers\LoginController::class, 'postLogin'])->name('postLogin');

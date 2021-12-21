@@ -69,6 +69,18 @@
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <label for="exampleInputFile">File Video</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" accept="video/mp4,video/x-m4v,video/*" class="custom-file-input" id="fileVideo" name="fileVideo" required>
+                  <label class="custom-file-label" for="fileObjek">Pilih File</label>
+                </div>
+                <div class="input-group-append">
+                  <span class="input-group-text">Unggah</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

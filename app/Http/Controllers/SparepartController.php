@@ -43,21 +43,27 @@ class SparepartController extends Controller
         $request->validate([
             'kodeSP' => 'required',
             'namaSP' => 'required',
-            'fileObjek' => 'required'
+            'fileObjek' => 'required',
+            'fileVideo' => 'required'
         ]);
         // ambil data
         $fileObjek = $request->file('fileObjek');
+        $fileVideo = $request->file('fileVideo');
         // define nama img
-        $namaObjek = time() . "_" . $fileObjek->getClientOriginalName() . "." . $fileObjek->getClientOriginalExtension();
+        $namaObjek = time() . "_" . $fileObjek->getClientOriginalName();
+        $namaVideo = time() . "_" . $fileVideo->getClientOriginalName();
         // define public path
         $uploadObjek = 'upload/objek/';
+        $uploadVideo = 'upload/video/';
 
         $fileObjek->move($uploadObjek, $namaObjek);
+        $fileVideo->move($uploadVideo, $namaVideo);
 
         Sparepart::create([
             'kodeSP' => $request->kodeSP,
             'namaSP' => $request->namaSP,
-            'fileObjek' => $namaObjek
+            'fileObjek' => $namaObjek,
+            'fileVideo' => $namaVideo
 
         ]);
 
@@ -108,14 +114,16 @@ class SparepartController extends Controller
 
         // define public path
         $uploadObjek = 'upload/objek/';
+        $uploadVideo = 'upload/video/';
 
         // update file pada folder local 
         //// ambil data
         $fileObjek = $request->file('fileObjek');
+        $fileVideo = $request->file('fileVideo');
 
         if ($request->hasFile('fileObjek')) {
             //// define nama file
-            $namaObjek = time() . "_" . $fileObjek->getClientOriginalName() . "." . $fileObjek->getClientOriginalExtension();;
+            $namaObjek = time() . "_" . $fileObjek->getClientOriginalName();
             //// ganti file pada folder local
             $request->fileObjek->move($uploadObjek, $namaObjek);
             // data update ke DB
@@ -123,6 +131,17 @@ class SparepartController extends Controller
                 'fileObjek' => $namaObjek
             ];
             $sparepart->update($objek);
+        }
+        if ($request->hasFile('fileVideo')) {
+            //// define nama file
+            $namaVideo = time() . "_" . $fileVideo->getClientOriginalName();
+            //// ganti file pada folder local
+            $request->fileVideo->move($uploadVideo, $namaVideo);
+            // data update ke DB
+            $video = [
+                'fileVideo' => $namaVideo
+            ];
+            $sparepart->update($video);
         }
 
         // data update ke DB
@@ -146,9 +165,13 @@ class SparepartController extends Controller
 
         $sparepart = Sparepart::find($id);
         $fileObjek = public_path('/upload/objek/') . $sparepart->fileObjek;
+        $fileVideo = public_path('/upload/video/') . $sparepart->fileVideo;
 
         if (file_exists($fileObjek)) {
             @unlink($fileObjek);
+            if (file_exists($fileVideo)) {
+                @unlink($fileVideo);
+            }
         }
 
         $sparepart->delete();

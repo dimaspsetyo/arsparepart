@@ -63,11 +63,26 @@
               <label for="exampleInputFile">File Objek 3D</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="fileObjek" name="fileObjek">
+                  <input type="file" accept=".obj" class="custom-file-input" id="fileObjek" name="fileObjek">
                   <label class="custom-file-label" for="fileObjek">{{ $sparepart->fileObjek }}</label>
                 </div>
                 <div class="input-group-append">
                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-objek">
+                    <i class="fas fa-eye">
+                    </i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">File Video</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" accept="video/mp4,video/x-m4v,video/*" class="custom-file-input" id="fileVideo" name="fileVideo">
+                  <label class="custom-file-label" for="fileVideo">{{ $sparepart->fileVideo }}</label>
+                </div>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-video">
                     <i class="fas fa-eye">
                     </i>
                   </button>

@@ -13,9 +13,9 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">Detail Sparepart</h1>
-            </div
-          </div
-        </div
+            </div>
+          </div>
+        </div>
       </div>
     <section class="content">
       <form action="{{ route('show', $sparepart->id) }}" method="get" enctype="multipart/form-data">
@@ -48,9 +48,32 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
+        <div class="col-sm-6">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">File Video</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>File Video</label>
+                <ul class="list-unstyled">
+                  <li>
+                      <a href="{{ route('video', ['id' => $sparepart->id]) }}" class="text-info">
+                        <i class="far fa-fw fa-eye"></i>
+                        {{ $sparepart->fileVideo }}
+                      </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">File Objek 3D</h3>
@@ -65,9 +88,10 @@
                 <label>File Objek 3D</label>
                 <ul class="list-unstyled">
                   <li>
-                    {{-- <a type="button" class="btn text-info"  data-toggle="modal" data-target="#modal-objek"> --}}
-                      <i class="far fa-fw fa-file"></i> {{ $sparepart->fileObjek }}
-                    {{-- </a> --}}
+                      <a href="{{ route('objek', ['id' => $sparepart->id]) }}" class="btn text-info">
+                        <i class="far fa-fw fa-eye"></i>
+                        {{ $sparepart->fileObjek }}
+                      </a>
                   </li>
                 </ul>
               </div>

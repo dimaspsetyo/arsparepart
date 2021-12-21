@@ -54,12 +54,11 @@
   <a-scene device-orientation-permission-ui="enabled: false" vr-mode-ui="enabled: false" markerhandler embedded arjs='sourceType: webcam; debugUIEnabled: false;' arjs embedded renderer="logarithmicDepthBuffer: true;" gesture-detector id="scene">
 
     <a-assets>
-      <img id="marker" src="{{ asset('../pattern-ARSparepart.patt') }}">
       <a-asset-item id="{{ $sparepart->id }}" src="{{ url('/upload/objek/'.$sparepart->fileObjek) }}"></a-asset-item>
     </a-assets>
 
     <a-marker type='pattern' url='{{ asset('../pattern-ARSparepart.patt') }}' markerhandler smooth="true" smoothCount="5" smoothTolerance="0.01" smoothThreshold="2" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="markerA">
-      <a-text value="Objek = {{ $sparepart->namaSP }}" color="yellow" rotation="-90 0 0" position="0 1.5 -1.2" align="center"></a-text>
+      <a-text value="Objek: {{ $sparepart->namaSP }}" color="yellow" rotation="-90 0 0" position="0 1.5 -1.2" align="center"></a-text>
       <a-entity>
         <a-entity  scale=".1 .1 .1" class="clickable" gesture-handler id="{{ $sparepart->id }}-model" obj-model="obj: #{{ $sparepart->id }};" rotation="0 0 0"></a-entity>
       </a-entity>
