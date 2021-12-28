@@ -29,6 +29,8 @@ Route::post('/postReset', [App\Http\Controllers\ForgotPasswordController::class,
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+    Route::get('/password', [App\Http\Controllers\ForgotPasswordController::class, 'password'])->name('password');
+    Route::post('/postPassword', [App\Http\Controllers\ForgotPasswordController::class, 'postPassword'])->name('postPassword');
 
 
     Route::get('/sparepart', [App\Http\Controllers\SparepartController::class, 'index'])->name('sparepart');

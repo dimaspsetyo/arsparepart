@@ -44,9 +44,7 @@
               <input type="text" id="namaSP" name="namaSP" value="{{ $sparepart->namaSP }}" class="form-control" maxlength="15" required>
             </div>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
       <div class="col-md-6">
         <div class="card card-info">
@@ -66,12 +64,10 @@
                   <input type="file" accept=".obj" class="custom-file-input" id="fileObjek" name="fileObjek">
                   <label class="custom-file-label" for="fileObjek">{{ $sparepart->fileObjek }}</label>
                 </div>
-                <div class="input-group-append">
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-objek">
-                    <i class="fas fa-eye">
-                    </i>
-                  </button>
-                </div>
+                <a href="{{ route('objek', ['id' => $sparepart->id]) }}" target="_blank" class="btn text-info">
+                  <i class="fas fa-eye">
+                  </i>
+                </a>
               </div>
             </div>
             <div class="form-group">
@@ -82,10 +78,10 @@
                   <label class="custom-file-label" for="fileVideo">{{ $sparepart->fileVideo }}</label>
                 </div>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-video">
+                  <a href="{{ route('video', ['id' => $sparepart->id]) }}" target="_blank" class="btn text-info">
                     <i class="fas fa-eye">
                     </i>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -114,6 +110,34 @@
   $(function () {
     bsCustomFileInput.init();
   });
+</script>
+
+<script>
+  
+  var uploadObj = document.getElementById("fileObjek");
+  var uploadVid = document.getElementById("fileVideo");
+
+  uploadObj.onchange = function() {
+      if(this.files[0].size > 20 * 1024 * 1024){
+          Swal.fire({
+            title: "Ups!", 
+            text: 'Ukuran File Objek 3D maks. 20mb',
+            icon: "info"
+          });
+        this.value = "";
+      };
+  };
+  uploadVid.onchange = function() {
+      if(this.files[0].size > 20 * 1024 * 1024){
+        Swal.fire({
+            title: "Ups!", 
+            text: 'Ukuran File Video maks. 20mb',
+            icon: "info"
+          });
+        this.value = "";
+      };
+  };
+
 </script>
 
 <script>

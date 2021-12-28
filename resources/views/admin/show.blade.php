@@ -63,7 +63,7 @@
                 <label>File Video</label>
                 <ul class="list-unstyled">
                   <li>
-                      <a href="{{ route('video', ['id' => $sparepart->id]) }}" class="text-info">
+                      <a href="{{ route('video', ['id' => $sparepart->id]) }}" target="_blank" class="text-info">
                         <i class="far fa-fw fa-eye"></i>
                         {{ $sparepart->fileVideo }}
                       </a>
@@ -88,10 +88,10 @@
                 <label>File Objek 3D</label>
                 <ul class="list-unstyled">
                   <li>
-                      <a href="{{ route('objek', ['id' => $sparepart->id]) }}" class="btn text-info">
-                        <i class="far fa-fw fa-eye"></i>
-                        {{ $sparepart->fileObjek }}
-                      </a>
+                    <a href="{{ route('objek', ['id' => $sparepart->id]) }}" target="_blank" class="text-info">
+                      <i class="far fa-fw fa-eye"></i>
+                      {{ $sparepart->fileObjek }}
+                    </a>
                   </li>
                 </ul>
               </div>

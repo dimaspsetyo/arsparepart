@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\ForgotPassword;
 use Illuminate\Support\Str;
 
-use DB;
-use Mail;
-use Hash;
-use Carbon\Carbon;
+use Auth, DB, Hash, Mail, Carbon\Carbon;
 
 class ForgotPasswordController extends Controller
 {
@@ -35,10 +33,15 @@ class ForgotPasswordController extends Controller
     public function postForgot(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users'
+            'email' => 'required|email'
         ]);
 
         $token = Str::random(64);
+        $users = User::where('email', '=', $request->input('email'))->first();
+
+        if ($users === null) {
+            return back()->with('message', 'Link tautan sudah dikirimkan. Silahkan cek Email Anda!');
+        }
 
         DB::table('password_resets')->insert([
             'email' => $request->email,
@@ -52,7 +55,7 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return back()->with('message', 'Kami sudah mengirimkan link ke email Anda!');
+        return back()->with('message', 'Link tautan sudah dikirimkan. Silahkan cek Email Anda!');
     }
     /**
      * Write code on Method
@@ -61,7 +64,7 @@ class ForgotPasswordController extends Controller
      */
     public function reset($token)
     {
-        $var_title = "ARSparepart | Ganti Password";
+        $var_title = "ARSparepart | Ubah Password";
         return view('auth.reset', ['token' => $token],  compact('var_title'));
     }
 
@@ -93,5 +96,40 @@ class ForgotPasswordController extends Controller
         ForgotPassword::where(['email' => $request->email])->delete();
 
         return redirect('login')->with(['toast_success' => 'Password Berhasil Diubah!']);
+    }
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function password()
+    {
+        $var_title = "ARSparepart | Ubah Password";
+        return view('admin.password', compact('var_title'));
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function postPassword(Request $request)
+    {
+
+        $request->validate([
+            'current_password' => 'required|current_password',
+            'password' => 'required|string|min:6|required_with:confirmPassword|same:confirmPassword',
+            'confirmPassword' => 'min:6'
+        ]);
+
+        if (Hash::check($request->current_password, auth()->user()->password)) {
+            if (!Hash::check($request->password, auth()->user()->password)) {
+
+                auth()->user()->update(['password' => Hash::make($request->password)]);
+                return redirect('password')->with(['toast_success' => 'Password Berhasil Diubah!']);
+                // dd('success');
+            }
+            return back()->with('message', 'Password Baru tidak boleh sama dengan Password Lama!');
+        }
     }
 }

@@ -23,6 +23,14 @@
                   </a>
                 </li>
               </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{  route('password') }}" class="nav-link">
+                    <i class="nav-icon fas fa-lock"></i>
+                    <p style="font-style:italic"> Ubah Password</p>
+                  </a>
+                </li>
+              </ul>
         <li class="nav-item">
           <a href="{{ route('logout') }}" class="nav-link">
             <i style="color:red" class="nav-icon  fas fa-sign-out-alt"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -15,14 +16,14 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
         //  dd($request->all());
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('sparepart');
+            return Redirect::intended('sparepart');
         };
-        return back()->with('message', 'Password salah!');
+        return back()->with('message', 'Email atau Password salah!');
     }
     public function logout()
     {
@@ -31,6 +32,9 @@ class LoginController extends Controller
     }
     public function index()
     {
+        if (Auth::check()) {
+            return back();
+        }
         $var_title = "ARSparepart | Masuk";
         return view('auth.login', compact('var_title'));
     }

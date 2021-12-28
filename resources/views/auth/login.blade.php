@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ $var_title; }}</title>
 
-  @include('template/header')
+  @include('template.header')
 
 </head>
 <body class="hold-transition login-page">
@@ -27,9 +27,6 @@
 
       <form action="{{ route('postLogin') }}" method="post">
         {{ csrf_field(); }}
-        @if ($errors->has('email'))
-          <span class="text-danger">{{ $errors->first('email') }}</span>
-        @endif
         <div class="input-group mb-3">
           <input id="email" type="email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
@@ -38,9 +35,6 @@
             </div>
           </div>
         </div>
-        @if ($errors->has('password'))
-          <span class="text-danger">{{ $errors->first('password') }}</span>
-        @endif
         <div class="input-group mb-3">
           <input id="password" type="password" name="password" class="form-control" placeholder="Password">
           <div class="input-group-append">

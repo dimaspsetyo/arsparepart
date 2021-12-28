@@ -73,7 +73,7 @@
               <label for="exampleInputFile">File Video</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" accept="video/mp4,video/x-m4v,video/*" class="custom-file-input" id="fileVideo" name="fileVideo" required>
+                  <input type="file" accept="video/mp4,video/x-m4v,video/*" class="custom-file-input" id="fileVideo" name="fileVideo">
                   <label class="custom-file-label" for="fileObjek">Pilih File</label>
                 </div>
                 <div class="input-group-append">
@@ -107,6 +107,34 @@
   $(function () {
     bsCustomFileInput.init();
   });
+</script>
+
+<script>
+  
+  var uploadObj = document.getElementById("fileObjek");
+  var uploadVid = document.getElementById("fileVideo");
+
+  uploadObj.onchange = function() {
+      if(this.files[0].size > 20 * 1024 * 1024){
+          Swal.fire({
+            title: "Ups!", 
+            text: 'Ukuran File Objek 3D maks. 20mb',
+            icon: "info"
+          });
+        this.value = "";
+      };
+  };
+  uploadVid.onchange = function() {
+      if(this.files[0].size > 20 * 1024 * 1024){
+        Swal.fire({
+            title: "Ups!", 
+            text: 'Ukuran File Video maks. 20mb',
+            icon: "info"
+          });
+        this.value = "";
+      };
+  };
+
 </script>
 
 <script>

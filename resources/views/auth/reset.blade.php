@@ -36,7 +36,7 @@
           <span class="text-danger">{{ $errors->first('password') }}</span>
         @endif
         <div class="input-group mb-3">
-          <input name="password" id="password" type="password" class="form-control" placeholder="Password Baru">
+          <input name="password" id="password" type="password" class="form-control" placeholder="Password Baru" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -48,7 +48,7 @@
           <span class="text-danger">{{ $errors->first('confirmPassword') }}</span>
         @endif
         <div class="input-group mb-3">
-          <input name="confirmPassword" id="password" type="password" class="form-control" placeholder="Konfirmasi Password Baru">
+          <input name="confirmPassword" id="password" type="password" class="form-control" placeholder="Konfirmasi Password Baru" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,7 +60,7 @@
             <button type="submit" class="btn btn-primary btn-block">Ganti Password</button>
           </div>
         </div>
-      </form
+      </form>
       <p class="mt-3 mb-1">
         <a href="/login">Halaman Masuk</a>
       </p>

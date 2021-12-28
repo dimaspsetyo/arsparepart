@@ -43,21 +43,25 @@ class SparepartController extends Controller
         $request->validate([
             'kodeSP' => 'required',
             'namaSP' => 'required',
-            'fileObjek' => 'required',
-            'fileVideo' => 'required'
+            'fileObjek' => 'required'
         ]);
+
         // ambil data
         $fileObjek = $request->file('fileObjek');
-        $fileVideo = $request->file('fileVideo');
         // define nama img
         $namaObjek = time() . "_" . $fileObjek->getClientOriginalName();
-        $namaVideo = time() . "_" . $fileVideo->getClientOriginalName();
         // define public path
         $uploadObjek = 'upload/objek/';
-        $uploadVideo = 'upload/video/';
-
         $fileObjek->move($uploadObjek, $namaObjek);
-        $fileVideo->move($uploadVideo, $namaVideo);
+
+        if ($request->hasFile('fileVideo')) {
+            $fileVideo = $request->file('fileVideo');
+            $namaVideo = time() . "_" . $fileVideo->getClientOriginalName();
+            $uploadVideo = 'upload/video/';
+            $fileVideo->move($uploadVideo, $namaVideo);
+        } else {
+            $namaVideo = '';
+        }
 
         Sparepart::create([
             'kodeSP' => $request->kodeSP,
@@ -117,11 +121,10 @@ class SparepartController extends Controller
         $uploadVideo = 'upload/video/';
 
         // update file pada folder local 
-        //// ambil data
-        $fileObjek = $request->file('fileObjek');
-        $fileVideo = $request->file('fileVideo');
 
         if ($request->hasFile('fileObjek')) {
+            //// ambil data
+            $fileObjek = $request->file('fileObjek');
             //// define nama file
             $namaObjek = time() . "_" . $fileObjek->getClientOriginalName();
             //// ganti file pada folder local
@@ -133,6 +136,8 @@ class SparepartController extends Controller
             $sparepart->update($objek);
         }
         if ($request->hasFile('fileVideo')) {
+            //// ambil data
+            $fileVideo = $request->file('fileVideo');
             //// define nama file
             $namaVideo = time() . "_" . $fileVideo->getClientOriginalName();
             //// ganti file pada folder local
