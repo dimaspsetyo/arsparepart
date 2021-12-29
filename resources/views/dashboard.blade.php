@@ -29,11 +29,11 @@
               @foreach($sparepart as $sparepart)
             <tr>
               <td class="project-actions text-right">
-                <a style="font-family: Source Sans Pro" class="btn btn-primary btn-sm" href="{{ route('objek', ['id' => $sparepart->id]) }}">
+                <a style="font-family: Source Sans Pro" class="btn btn-primary btn-flat" href="{{ route('objek', ['id' => $sparepart->id]) }}">
                   <i class="fas fa-eye"></i>
                   3D
                 </a>
-                <a style="font-family: Source Sans Pro"  class="btn btn-info btn-sm" href="{{ route('video', ['id' => $sparepart->id]) }}">
+                <a style="font-family: Source Sans Pro"  class="btn btn-info btn-flat" href="{{ route('video', ['id' => $sparepart->id]) }}">
                   <i class="fas fa-video"></i>
                   Video
                 </a>
